@@ -1,0 +1,64 @@
+import java.util.Random;
+
+public class _12practical {
+
+    static long countOn3 = 0;
+    static long countOn2A = 0;
+    static long countOn2B = 0;
+    static long countOn = 0;
+
+    // O(n^3)
+    public static int mcsOn3(int[] X) {
+        int n = X.length;
+        int maxsofar = 0;
+        for (int low = 0; low < n; low++) {
+            for (int high = low; high < n; high++) {
+                int sum = 0;
+                for (int r = low; r < high; r++) {
+                    sum += X[r];
+                    countOn3++;
+                    if (sum > maxsofar)
+                        maxsofar = sum;
+                }
+            }
+        }
+        return maxsofar;
+    }
+
+
+    public static int mcsOn2A(int[] X) {
+        int n = X.length;
+        int maxsofar = 0;
+        for (int low = 0; low < n; low++) {
+            int sum = 0;
+            for (int r = low; r < n; r++) {
+                sum += X[r];
+                countOn2A++;
+                if (sum > maxsofar)
+                    maxsofar = sum;
+            }
+        }
+        return maxsofar;
+    }
+
+
+    public static int mcsOn2B(int[] X) {
+        int n = X.length;
+        int[] sumTo = new int[n + 1];
+
+        for (int i = 1; i <= n; i++) {
+            sumTo[i] = sumTo[i - 1] + X[i - 1];
+        }
+
+        int maxsofar = 0;
+        for (int low = 0; low < n; low++) {
+            for (int high = low + 1; high <= n; high++) {
+                int sum = sumTo[high] - sumTo[low];
+                countOn2B++;
+                if (sum > maxsofar)
+                    maxsofar = sum;
+            }
+        }
+        return maxsofar;
+    }
+}
