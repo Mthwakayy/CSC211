@@ -18,3 +18,16 @@ public class timeMethods {
         double totalTime = 0.0;
         int n = N;
         int repetition, repetitions = 30;
+
+        int[] arr = new int[n];
+        for(int i = 0; i < n; i++)
+            arr[i] = i;
+
+        int target = n - 1;
+
+        runTime = 0;
+        runTime2 = 0;
+
+
+
+
